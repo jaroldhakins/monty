@@ -42,6 +42,9 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void push_f(struct stack_t **stack, unsigned int value);
+int get_file(char *pathname, stack_t **stack);
+void push_f(stack_t **stack, unsigned int num_line);
+void pall_f(stack_t **stack, unsigned int num_line);
+void list_f(stack_t **stack, char *word, unsigned int num_lines);
 
 #endif
