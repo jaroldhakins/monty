@@ -65,5 +65,8 @@ void push_f(stack_t **stack, unsigned int value);
 void pall_f(stack_t **stack, unsigned int value);
 void pint_f(stack_t **stack, unsigned int value);
 void pop_f(stack_t **stack, unsigned int value);
+void swap_f(stack_t **stack, unsigned int value);
+void free_stack_f(stack_t *stack);
+size_t len_f(stack_t *h);
 
 #endif

@@ -17,6 +17,7 @@ void list_f(stack_t **stack, char *code, unsigned int value)
 		{"pall", pall_f},
 		{"pint", pint_f},
 		{"pop", pop_f},
+		{"swap", swap_f},
 		{NULL, NULL}
 	};
 
@@ -60,4 +61,39 @@ void free_f(void)
 		free(tmp1);
 		tmp1 = tmp2;
 	}
+}
+/**
+ * free_stack_f - free stack
+ * Return: nothing
+ */
+void free_stack_f(stack_t *stack)
+{
+	stack_t *temp;
+
+	temp = stack;
+	while (temp != NULL)
+	{
+		temp = temp->next;
+		free(stack);
+		stack = temp;
+	}
+}
+
+/**
+ * len_f - Len of elements in a stack.
+ * @T: points to the top of the stack
+ *
+ * Return: number of elements.
+ */
+size_t len_f(stack_t *T)
+{
+	stack_t *current = T;
+	size_t n = 0;
+
+	while (current != NULL)
+	{
+		n++;
+		current = current->next;
+	}
+	return (n);
 }

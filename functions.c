@@ -79,11 +79,37 @@ void pop_f(stack_t **stack, unsigned int value)
 	node = *stack;
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", value);
+		printf("L%d: can't pop an empty stack\n", value);
 		exit(EXIT_FAILURE);
 	}
 	if (node->next != NULL)
 		node->next->prev = NULL;
 	*stack = (*stack)->next;
 	free(node);
+}
+
+/**
+ * swap_f - swaps the top two elements of the stack.
+ * @stack: pila
+ * @value: node value
+ * Return: nothing
+ */
+void swap_f(stack_t **stack, unsigned int value)
+{
+	stack_t *temp;
+
+	if (len_f(*stack) < 2)
+	{
+		printf("L%d: can't swap, stack too short\n", value);
+		free_stack_f(*stack);
+		exit(EXIT_FAILURE);
+	}
+	temp = (*stack)->next;
+	(*stack)->prev = temp;
+	(*stack)->next = temp->next;
+	if ((*stack)->next != NULL)
+		(*stack)->next->prev = *stack;
+	temp->next = *stack;
+	temp->prev = NULL;
+	*stack = temp;
 }
