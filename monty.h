@@ -69,5 +69,6 @@ void swap_f(stack_t **stack, unsigned int value);
 void free_stack_f(stack_t *stack);
 size_t len_f(stack_t *h);
 void add_f(stack_t **stack, unsigned int value);
+void nop_f(stack_t **stack, unsigned int value);
 
 #endif
