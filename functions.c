@@ -66,6 +66,12 @@ void pint_f(stack_t **stack, unsigned int value)
 	printf("%d\n", (*stack)->n);
 }
 
+/**
+ * pop_f - Delete value at top of stack
+ * @stack: pila
+ * @value: node value
+ * Return: nothing
+ */
 void pop_f(stack_t **stack, unsigned int value)
 {
 	stack_t *node;
