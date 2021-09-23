@@ -41,3 +41,26 @@ int get_file(char *path, stack_t **stack)
 	fclose(fd);
 	return (EXIT_SUCCESS);
 }
+
+/**
+ * add_f - adds the top two elements of the stack.
+ * @stack: pila
+ * @value: node value
+ * Return: nothing
+ */
+void add_f(stack_t **stack, unsigned int value)
+{
+	stack_t *node;
+
+	if (len_f(*stack) < 2)
+	{
+		printf("L%d: can't add, stack too short\n", value);
+		free_stack_f(*stack);
+		exit(EXIT_FAILURE);
+	}
+	node = *stack;
+	(*stack)->next->n = (*stack)->n + (*stack)->next->n;
+	(*stack)->next->prev = NULL;
+	*stack = (*stack)->next;
+	free(node);
+}
