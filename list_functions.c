@@ -16,6 +16,7 @@ void list_f(stack_t **stack, char *code, unsigned int value)
 		{"push", push_f},
 		{"pall", pall_f},
 		{"pint", pint_f},
+		{"pop", pop_f},
 		{NULL, NULL}
 	};
 

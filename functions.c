@@ -65,3 +65,19 @@ void pint_f(stack_t **stack, unsigned int value)
 	}
 	printf("%d\n", (*stack)->n);
 }
+
+void pop_f(stack_t **stack, unsigned int value)
+{
+	stack_t *node;
+
+	node = *stack;
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", value);
+		exit(EXIT_FAILURE);
+	}
+	if (node->next != NULL)
+		node->next->prev = NULL;
+	*stack = (*stack)->next;
+	free(node);
+}

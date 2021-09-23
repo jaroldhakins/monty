@@ -64,5 +64,6 @@ void list_f(stack_t **stack, char *op, unsigned int value);
 void push_f(stack_t **stack, unsigned int value);
 void pall_f(stack_t **stack, unsigned int value);
 void pint_f(stack_t **stack, unsigned int value);
+void pop_f(stack_t **stack, unsigned int value);
 
 #endif
