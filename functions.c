@@ -58,7 +58,7 @@ void pall_f(stack_t **stack, unsigned int value)
  */
 void pint_f(stack_t **stack, unsigned int value)
 {
-	if (*stack == NULL)
+	if (*stack == NULL || stack == NULL)
 	{
 		printf("L%i: can't pint, stack empty\n", value);
 		exit(EXIT_FAILURE);
