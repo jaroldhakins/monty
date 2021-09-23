@@ -1,42 +1,52 @@
 #include "monty.h"
+
 /**
- * push_f - Add the new element to the stack
- * @stack: struct of the nodes
- * @num_line: is the number of line
+ * push_f - put new element in pila
+ * @stack: pila
+ * @value: node value
  * Return: nothing
  */
-void push_f(stack_t **stack, unsigned int num_line)
+void push_f(stack_t **stack, unsigned int value)
 {
-	stack_t *new;
+	char *opcode;
+	int num;
+	char *DELIM = " \n\t\r";
+	stack_t *new_node = malloc(sizeof(stack_t));
 
-	new = malloc(sizeof(stack_t));
-	if (new == NULL)
-		exit;
-	new->n = num_line;
-	new->next = NULL;
-	new->prev = NULL;
-	if (*stack == NULL)
+	if (new_node == NULL)
 	{
-		new = *stack;
+		printf("Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
-	(*stack)->prev = new;
-	new->next = *stack;
-	*stack = new;
+	opcode = strtok(NULL, DELIM);
+	if (opcode == NULL || stack == NULL)
+	{
+		printf("L%u: usage: push integer\n", value);
+		exit(EXIT_FAILURE);
+	}
+	num = atoi(opcode);
+	new_node->n = num;
+	new_node->prev = NULL;
+	new_node->next = *stack;
+	if (new_node->next != NULL)
+		(new_node->next)->prev = new_node;
+	*stack = new_node;
 }
+
 /**
- * pall_f - prints all values on the stack, starting from top
- * @stack: double pointer to the first node
- * @line_number: value of new node
+ * pall_f - prints nodes in pila
+ * @stack: pila
+ * @value: node value
  * Return: nothing
  */
-void pall_f(stack_t **stack, unsigned int num_line)
+void pall_f(stack_t **stack, unsigned int value)
 {
-	stack_t *new = *stack;
+	stack_t *new_node = *stack;
 
-	while (new != NULL)
+	while (new_node != NULL)
 	{
-		printf("%d\n", new->n);
-		new = new->next;
+		printf("%d\n", new_node->n);
+		new_node = new_node->next;
 	}
-	(void)num_line;
+	(void)value;
 }

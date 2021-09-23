@@ -1,26 +1,41 @@
 #include "monty.h"
+#include <stdio.h>
+
 /**
- * get_file -
- * 
- */
-int get_file(char *pathname, stack_t **stack)
+ * get_file - tokenize and get the line
+ * @path: path
+ * @stack: pila
+ * Return: fail or success
+ **/
+int get_file(char *path, stack_t **stack)
 {
 	FILE *fd;
-	char *line = NULL;
-	int count;
 	size_t size;
-	char *DELIM = " \t\n\r";
-	char *word;
-	int num_lines = 0;
+	ssize_t count;
+	unsigned int value = 0;
+	char *line = NULL;
+	char *opcode;
+	char *DELIM = " \n\t\r";
 
-	fd = fopen(pathname, "r");
+
+	if (!path)
+	{
+		printf("Error: Can't open file %s\n", path);
+		exit(EXIT_FAILURE);
+	}
+	fd = fopen(path, "r");
+	if (fd == NULL)
+	{
+		printf("Error: Can't open file %s\n", path);
+		exit(EXIT_FAILURE);
+	}
+	atexit(free_f);
 	while ((count = getline(&line, &size, fd)) != -1)
 	{
-		word = strtok(line, DELIM);
-		num_lines++;
-		printf("%s\n", word);
-		printf("%i\n", num_lines);
-		list_f(stack, word, num_lines);
+		opcode = strtok(line, DELIM);
+		value++;
+		if (opcode)
+			list_f(stack, opcode, value);
 	}
 	free(line);
 	fclose(fd);
