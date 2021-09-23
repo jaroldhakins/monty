@@ -50,3 +50,18 @@ void pall_f(stack_t **stack, unsigned int value)
 	}
 	(void)value;
 }
+/**
+ * pint_f - prints value at top of stack
+ * @stack: pila
+ * @value: node value
+ * Return: nothing
+ */
+void pint_f(stack_t **stack, unsigned int value)
+{
+	if (*stack == NULL)
+	{
+		printf("L%u: can't pint, stack empty\n", value);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+}

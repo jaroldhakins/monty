@@ -15,6 +15,7 @@ void list_f(stack_t **stack, char *code, unsigned int value)
 	instruction_t ops[] = {
 		{"push", push_f},
 		{"pall", pall_f},
+		{"pint", pint_f},
 		{NULL, NULL}
 	};
 
